@@ -1,12 +1,13 @@
-Scouter Initials	Match Number	Robot	Team Number	Starting Position	No Show	Moved?	Timer	Classifier Scored	Overflow Scored	Pattern Correct	Auto Foul	Pickup Location	Classifier Scored	Overflow Scored	Depot Scored	Pattern Correct	Crossed Field/Played Defense?	Was Robot Defended by Other Alliance?	End Position	Died?	Tipped/Fell Over?	Offense Skill	Defensive Skill	Yellow/Red Card	Commentsabc	1	R1	3333	R2	false	true	0	9	1	2	0	4	0	0	0	0	true	true	Sc	false	false	3	1	No Card
+Scouter Initials	Match Number	Robot	Team Number	Starting Position	No Show	Moved?	Timer	Classifier Scored	Overflow Scored	Pattern Correct	Auto Foul	Pickup Location	Classifier Scored	Overflow Scored	Depot Scored	Pattern Correct	Crossed Field/Played Defense?	Was Robot Defended by Other Alliance?	End Position	Died?	Tipped/Fell Over?	Offense Skill	Defensive Skill	Yellow/Red Card	Comments
+abc	1	R1	3333	R2	false	true	0	9	1	2	0	4	0	0	0	0	true	true	Sc	false	false	3	1	No Card
 dt	1	R2	6666	R2	false	true	0	10	0	0	0	4	0	0	0	0	false	false	Hh	false	false	3	0	No Card
-dt 1 B1 0 R1 false true 0 5 0 0 0 2 0 0 0 0 true false P false false 2 3 No Card
-fu 1 B2 4444 R2 false true 0 12 2 4 0 4 0 0 0 0 false true Sc false false 5 1 No Card
+dt	1	B1	11111	R1	false	true	0	5	0	0	0	2	0	0	0	0	true	false	P	false	false	2	3	No Card
+fu	1	B2	4444	R2	false	true	0	12	2	4	0	4	0	0	0	0	false	true	Sc	false	false	5	1	No Card
 dt	2	R1	3504	R2	false	true	0	5	0	0	0	4	0	0	0	0	false	false	Hh	false	false	1	0	No Card
 dt	2	R2	11111	R1	false	true	0	13	1	3	0	4	0	0	0	0	false	false	Sc	false	false	3	0	No Card
-ty 2 B1 3333 R1 false true 0 6 3 2 0 2 0 0 0 0 true false Sc false false 3 3 Yellow
-hi 2 B2 4444 R1 false true 0 7 4 0 0 2 0 0 0 0 true false P false false 3 1 No Card
+ty	2	B1	3333	R1	false	true	0	6	3	2	0	2	0	0	0	0	true	false	Sc	false	false	3	3	Yellow
+hi	2	B2	4444	R1	false	true	0	7	4	0	0	2	0	0	0	0	true	false	P	false	false	3	1	No Card
 dt	3	R1	3333	R1	false	true	0	9	2	1	0	4	0	0	0	0	false	false	Sc	false	false	3	0	No Card
 dt	3	R2	11111	R2	false	false	0	11	1	2	0	4	0	0	0	0	true	true	P	false	false	3	2	No Card
-hi 3 B1 3333 R2 false true 0 16 3 4 0 2 0 0 0 0 false true P false false 5 0 No Card
-pu 3 B2 4444 R2 false true 0 7 5 1 0 2 0 0 0 0 false false P false false 3 0 No Card
+hi	3	B1	3333	R2	false	true	0	16	3	4	0	2	0	0	0	0	false	true	P	false	false	5	0	No Card
+pu	3	B2	4444	R2	false	true	0	7	5	1	0	2	0	0	0	0	false	false	P	false	false	3	0	No Card
