@@ -1,4 +1,4 @@
-abc	1	R1	3333	R2	false	true	0	9	1	2	0	4	0	0	0	0	true	true	Sc	false	false	3	1	No Card
+Scouter Initials	Match Number	Robot	Team Number	Starting Position	No Show	Moved?	Timer	Classifier Scored	Overflow Scored	Pattern Correct	Auto Foul	Pickup Location	Classifier Scored	Overflow Scored	Depot Scored	Pattern Correct	Crossed Field/Played Defense?	Was Robot Defended by Other Alliance?	End Position	Died?	Tipped/Fell Over?	Offense Skill	Defensive Skill	Yellow/Red Card	Commentsabc	1	R1	3333	R2	false	true	0	9	1	2	0	4	0	0	0	0	true	true	Sc	false	false	3	1	No Card
 dt	1	R2	6666	R2	false	true	0	10	0	0	0	4	0	0	0	0	false	false	Hh	false	false	3	0	No Card
 dt 1 B1 0 R1 false true 0 5 0 0 0 2 0 0 0 0 true false P false false 2 3 No Card
 fu 1 B2 4444 R2 false true 0 12 2 4 0 4 0 0 0 0 false true Sc false false 5 1 No Card
