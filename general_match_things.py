@@ -15,7 +15,6 @@ def general_match_ui():
         output_widget("avg_combined_pattern_count"),
         output_widget("endgame_position_distribution"),
         output_widget("endgame_points_distribution"),
-        output_widget("avg_combined_pattern_count"),
         output_widget("classifier_overflow_number"),
         output_widget("shooting_depot_teleop"),
         output_widget("classifier_overflow_points"),
