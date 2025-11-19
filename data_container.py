@@ -10,4 +10,6 @@ df["Auto Points Scored"] = df["Classifier Scored(Auto)"]*3 + df["Overflow Scored
 df["Teleop Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Depot Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
 df["Endgame Points Scored"] = np.where(position == "No", 0, np.where(position == "P", 5, np.where(position == "Sc", 10, np.where(position == "Hh", 20, 0))))
 df["Total Points Scored"] = df["Auto Points Scored"] + df["Teleop Points Scored"] + df["Endgame Points Scored"]
-
+df["Shooting Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
+df["Classifier Points Scored(Auto)"] = df["Classifier Scored(Auto)"]*3
+df["Overflow Points Scored(Auto)"] = df["Overflow Scored(Auto)"]*1

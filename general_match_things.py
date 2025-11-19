@@ -12,7 +12,10 @@ def general_match_ui():
         output_widget("team_v_total_points"),
         output_widget("avg_auto_pattern_count"),
         output_widget("avg_teleop_pattern_count"),
-        output_widget("avg_combined_pattern_count")
+        output_widget("avg_combined_pattern_count"),
+        output_widget("classifier_overflow_number"),
+        output_widget("shooting_depot_teleop"),
+        output_widget("classifier_overflow_points"),
     )
 @module.server
 def general_match_server(input,output,session):
@@ -63,4 +66,32 @@ def general_match_server(input,output,session):
         fig = px.bar(new_df, x="Team Number",
                      y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
+        return fig
+
+    @render_widget
+    def classifier_overflow_number():
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        print(avg_team.keys())
+        fig = px.bar(avg_team, y=["Classifier Scored(Auto)", "Overflow Scored(Auto)"],
+                     title="Classifier v. Overflow Scored (Auto)")
+        return fig
+
+    @render_widget
+    def classifier_overflow_points():
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        print(avg_team.keys())
+        fig = px.bar(avg_team, y=["Classifier Points Scored(Auto)", "Overflow Points Scored(Auto)"],
+                     title="Classifier v. Overflow Points Scored (Auto)")
+        return fig
+
+
+    @render_widget
+    def shooting_depot_teleop():
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        print(avg_team.keys())
+        fig = px.scatter(avg_team, x="Depot Scored(Teleop)", y="Shooting Points Scored", text=avg_team.index,
+                         title="Depot v. Shooting Scored (Teleop) per Team")
+        fig.update_traces(marker=dict(
+            symbol='circle', size=10),
+            textposition="middle left")
         return fig
