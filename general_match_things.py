@@ -9,16 +9,42 @@ from data_container import df
 @module.ui
 def general_match_ui():
     return ui.page_fluid(
-        output_widget("team_v_total_points"),
-        output_widget("avg_auto_pattern_count"),
-        output_widget("avg_teleop_pattern_count"),
-        output_widget("avg_combined_pattern_count"),
-        output_widget("endgame_position_distribution"),
-        output_widget("endgame_points_distribution"),
-        output_widget("classifier_overflow_number"),
-        output_widget("shooting_depot_teleop"),
-        output_widget("classifier_overflow_points"),
+        ui.layout_sidebar(
+            ui.sidebar(
+                "hello!"
+            ),
+            ui.navset_tab(
+                ui.nav_panel("General Data",
+                    ui.card(output_widget("team_v_total_points")),
+                    ui.card(output_widget("avg_combined_pattern_count")),
+                ),
+                ui.nav_panel("Auto Data",
+                    ui.card(output_widget("avg_auto_pattern_count")),
+                    ui.card(output_widget("classifier_overflow_number_auto")),
+                    ui.card(output_widget("classifier_overflow_points_auto")),
+                ),
+                ui.nav_panel("Teleop Data",
+                    ui.card(output_widget("avg_teleop_pattern_count")),
+                    ui.card(output_widget("shooting_depot_teleop")),
+                ),
+                ui.nav_panel("Endgame Data",
+                    ui.card(output_widget("endgame_position_distribution")),
+                    ui.card(output_widget("endgame_points_distribution")),
+                ),
+            )
     )
+        # output_widget("team_v_total_points"),
+        # output_widget("avg_auto_pattern_count"),
+        # output_widget("avg_teleop_pattern_count"),
+        # output_widget("avg_combined_pattern_count"),
+        # output_widget("endgame_position_distribution"),
+        # output_widget("endgame_points_distribution"),
+        # output_widget("classifier_overflow_number_auto"),
+        # output_widget("shooting_depot_teleop"),
+        # output_widget("classifier_overflow_points_auto"),
+    )
+
+
 @module.server
 def general_match_server(input,output,session):
 
@@ -115,7 +141,7 @@ def general_match_server(input,output,session):
 
 
     @render_widget
-    def classifier_overflow_number():
+    def classifier_overflow_number_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
         fig = px.bar(avg_team, y=["Classifier Scored(Auto)", "Overflow Scored(Auto)"],
@@ -123,7 +149,7 @@ def general_match_server(input,output,session):
         return fig
 
     @render_widget
-    def classifier_overflow_points():
+    def classifier_overflow_points_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
         fig = px.bar(avg_team, y=["Classifier Points Scored(Auto)", "Overflow Points Scored(Auto)"],
