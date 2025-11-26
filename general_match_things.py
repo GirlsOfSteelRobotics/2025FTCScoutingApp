@@ -57,7 +57,7 @@ def general_match_server(input,output,session):
     def team_v_total_points():
         all_teams = [3333, 6666, 11111, 4444]
         new_df = df.loc[df["Team Number"].isin(all_teams)]
-        fig = px.box(new_df, x="Team Number", y="Total Points Scored")
+        fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
         return fig
 
     @render_widget
@@ -80,6 +80,7 @@ def general_match_server(input,output,session):
         fig_general_pattern_count = px.bar(avg_team, y=["Pattern Correct(Auto)", "Pattern Correct(Teleop)"],
                                            title="Average Pattern Correct by Team in Teleop and Auto")
         return fig_general_pattern_count
+
 
     @render_widget
     def classified_v_overflow_v_depot_scored():
