@@ -60,6 +60,8 @@ def general_match_server(input,output,session):
     @render_widget
     def classified_v_overflow_v_depot_points():
         # add colors, figure out the line separation thing, team thing
+        all_teams = [3333, 6666, 11111, 4444]
+        new_df = df.loc[df["Team Number"].isin(all_teams)]
         fig = px.bar(new_df, x="Team Number",
                      y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
