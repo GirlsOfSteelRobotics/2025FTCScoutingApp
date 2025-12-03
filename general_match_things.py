@@ -51,7 +51,7 @@ def general_match_ui():
 def general_match_server(input,output,session):
 
     def get_teams_in_match():
-        all_teams = ["3333", "6666", "11111", "4444"]
+        all_teams = ["15206", "27153", "25912", "16523"]
         new_df = df.loc[df["Team Number"].isin(all_teams)]
         return new_df
 
