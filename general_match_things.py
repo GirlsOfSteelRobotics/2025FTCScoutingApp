@@ -4,14 +4,14 @@ import plotly.express as px
 from shiny import reactive, render, module
 from shiny import App, ui
 from shinywidgets import output_widget, render_widget
-from data_container import df
+from data_container import df, match_schedule
 
 @module.ui
 def general_match_ui():
     return ui.page_fluid(
         ui.layout_sidebar(
             ui.sidebar(
-                "hello!"
+                ui.output_ui("match_list_combobox"),
             ),
             ui.navset_tab(
                 ui.nav_panel("General Data",
@@ -60,6 +60,17 @@ def general_match_server(input,output,session):
         new_df = get_teams_in_match()
         fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
         return fig
+
+    @render.ui
+    def match_list_combobox():
+        match_numbers = list(match_schedule.keys())
+        return (
+            ui.input_select(
+                "match_select",
+                "Match Number:",
+                choices = match_numbers
+            )
+        )
 
     @render_widget
     def avg_auto_pattern_count():
