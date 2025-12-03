@@ -110,7 +110,6 @@ def general_match_server(input,output,session):
         endgame_df["Sc Points"] = endgame_df["Sc"] * 10
 
         custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
-
         fig_endgame_position_distrib = px.bar(endgame_df, x="Team Number", y=["Hh", "P", "Sc"],
                                               title="Endgame Position Distribution by Teams",
                                               color_discrete_sequence=custom_colors)
