@@ -26,6 +26,8 @@ def general_match_ui():
                 ui.nav_panel("Teleop Data",
                     ui.card(output_widget("avg_teleop_pattern_count")),
                     ui.card(output_widget("shooting_depot_teleop")),
+                    ui.card(output_widget("classifier_overflow_depot_scored")),
+                    ui.card(output_widget("classifier_overflow_depot_points"))
                 ),
                 ui.nav_panel("Endgame Data",
                     ui.card(output_widget("endgame_position_distribution")),
@@ -49,14 +51,13 @@ def general_match_ui():
 def general_match_server(input,output,session):
 
     def get_teams_in_match():
-        all_teams = [3333, 6666, 11111, 4444]
+        all_teams = ["3333", "6666", "11111", "4444"]
         new_df = df.loc[df["Team Number"].isin(all_teams)]
         return new_df
 
     @render_widget
     def team_v_total_points():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+        new_df = get_teams_in_match()
         fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
         return fig
 
@@ -83,26 +84,26 @@ def general_match_server(input,output,session):
 
 
     @render_widget
-    def classified_v_overflow_v_depot_scored():
+    def classifier_overflow_depot_scored():
         # add colors, figure out the line separation thing, team thing
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
-        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"], title="Classifier v. Overflow v. Depot Scored(Teleop)")
+        new_df = get_teams_in_match()
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
+        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
+                     title="Classifier v. Overflow v. Depot Scored(Teleop)", color_discrete_sequence = custom_colors)
         return fig
     @render_widget
-    def classified_v_overflow_v_depot_points():
+    def classifier_overflow_depot_points():
         # add colors, figure out the line separation thing, team thing
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
-        fig = px.bar(new_df, x="Team Number",
-                     y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
+        new_df = get_teams_in_match()
+
+        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
         return fig
 
     @render_widget
     def endgame_position_distribution():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+
+        new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
         endgame_df["Hh Points"] = endgame_df["Hh"] * 20
@@ -121,8 +122,8 @@ def general_match_server(input,output,session):
 
     @render_widget
     def endgame_points_distribution():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+
+        new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
         endgame_df["Hh Points"] = endgame_df["Hh"] * 20
