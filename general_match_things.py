@@ -12,11 +12,13 @@ def general_match_ui():
         ui.layout_sidebar(
             ui.sidebar(
                 ui.output_ui("match_list_combobox"),
+
             ),
             ui.navset_tab(
                 ui.nav_panel("General Data",
                     ui.card(output_widget("team_v_total_points")),
                     ui.card(output_widget("avg_combined_pattern_count")),
+                    ui.card(output_widget("teleop_v_auto_scored")),
                 ),
                 ui.nav_panel("Auto Data",
                     ui.card(output_widget("avg_auto_pattern_count")),
@@ -27,11 +29,11 @@ def general_match_ui():
                     ui.card(output_widget("avg_teleop_pattern_count")),
                     ui.card(output_widget("shooting_depot_teleop")),
                     ui.card(output_widget("classifier_overflow_depot_scored")),
-                    ui.card(output_widget("classifier_overflow_depot_points"))
+                    ui.card(output_widget("classifier_overflow_depot_points")),
                 ),
                 ui.nav_panel("Endgame Data",
                     ui.card(output_widget("endgame_position_distribution")),
-                    ui.card(output_widget("endgame_points_distribution")),
+                    ui.card(output_widget("endgame_points_distribution"))
                 ),
             )
     )
@@ -51,7 +53,9 @@ def general_match_ui():
 def general_match_server(input,output,session):
 
     def get_teams_in_match():
-        all_teams = ["15206", "27153", "25912", "16523"]
+        match_name = str(input.match_select())
+        print(match_name)
+        all_teams = match_schedule[match_name]
         new_df = df.loc[df["Team Number"].isin(all_teams)]
         return new_df
 
@@ -59,6 +63,12 @@ def general_match_server(input,output,session):
     def team_v_total_points():
         new_df = get_teams_in_match()
         fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
+        return fig
+
+    @render_widget
+    def teleop_v_auto_scored():
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        fig = px.scatter(avg_team, x="Auto Number Scored", y="Teleop Number Scored", title="Auto v. Teleop Number Scored")
         return fig
 
     @render.ui

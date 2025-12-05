@@ -18,6 +18,8 @@ df["Classifier Scored POINTS(Teleop)"] = df["Classifier Scored(Teleop)"] * 3
 df["Overflow Scored POINTS(Teleop)"] = df["Overflow Scored(Teleop)"] * 1
 df["Depot Scored POINTS(Teleop)"] = df["Depot Scored(Teleop)"] * 1
 df["Team Number"] = df["Team Number"].astype(str)
+df["Auto Number Scored"] = df["Classifier Scored(Auto)"] + df["Overflow Scored(Auto)"] + df["Pattern Correct(Auto)"]
+df["Teleop Number Scored"] = df["Classifier Scored(Teleop)"] + df["Overflow Scored(Teleop)"] + df["Depot Scored(Teleop)"]
 
 # match_schedule =
 
@@ -33,3 +35,8 @@ with open("data/2526-FIM-TEQ/toa_matches.json", 'r') as f:
 
         match_number = match_json["match_name"]
         match_schedule[match_number] = teams_in_match
+
+with open("data/2526-FIM-TEQ/toa_teams.json", 'r') as f:
+    team_key_json = json.load(f)
+    for team_json in team_key_json:
+        print (team_json["team_key"])
