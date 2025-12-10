@@ -4,7 +4,8 @@ import plotly.express as px
 from shiny import reactive, render, module
 from shiny import App, ui
 from shinywidgets import output_widget, render_widget
-from data_container import df, match_schedule
+from data_container import df, match_schedule, teams_all
+
 
 @module.ui
 def plots_by_team_ui():
@@ -15,6 +16,9 @@ def plots_by_team_ui():
 
             ),
             output_widget("total_points_v_match"),
+            output_widget("teleop_number_v_match"),
+            output_widget("auto_number_v_match"),
+            output_widget("auto_teleop_v_match")
         )
     )
 
@@ -25,13 +29,35 @@ def plots_by_team_server(input, output, server):
     def total_points_v_match():
         xxx = df["Team Number"] == input.team_numbers()
         quals1_data = df[xxx]
-        quals1_data
         fig = px.scatter(quals1_data, x="Match Number", y="Total Points Scored", title="Total Points Scored per Match")
+        return fig
+
+    @render_widget
+    def teleop_number_v_match():
+        xxx = df["Team Number"] == input.team_numbers()
+        quals1_data = df[xxx]
+        fig = px.bar(quals1_data, x="Match Number",
+                     y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
+                     title="Classifier v. Overflow v. Depot Scored(Teleop)")
+        return fig
+
+    @render_widget
+    def auto_number_v_match():
+        xxx = df["Team Number"] == input.team_numbers()
+        quals1_data = df[xxx]
+        fig = px.bar(quals1_data, x= "Match Number", y=["Classifier Scored(Auto)", "Overflow Scored(Teleop)"], title="Classifier v. Overflow Scored(Auto)")
+        return fig
+
+    @render_widget
+    def auto_teleop_v_match():
+        xxx = df["Team Number"] == input.team_numbers()
+        quals1_data = df[xxx]
+        fig = px.bar(quals1_data, x= "Match Number", y=["Teleop Points Scored", "Auto Points Scored"], title="Teleop and Auto Points Scored v. Match")
         return fig
 
     @render.ui
     def team_number_combobox():
-        team_numbers = ["15206", "27153", "25912"]
+        team_numbers = teams_all
         return (
             ui.input_select(
                 "team_numbers",

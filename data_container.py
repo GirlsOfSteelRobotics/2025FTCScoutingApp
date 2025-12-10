@@ -37,7 +37,9 @@ with open("data/2526-FIM-TEQ/toa_matches.json", 'r') as f:
         match_number = match_json["match_name"]
         match_schedule[match_number] = teams_in_match
 
+
 with open("data/2526-FIM-TEQ/toa_teams.json", 'r') as f:
     team_key_json = json.load(f)
+    teams_all = []
     for team_json in team_key_json:
-        print (team_json["team_key"])
+        teams_all.append(team_json["team_key"])
