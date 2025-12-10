@@ -107,17 +107,16 @@ def general_match_server(input,output,session):
     @render_widget
     def classifier_overflow_depot_scored():
         # add colors, figure out the line separation thing, team thing
-        new_df = get_teams_in_match()
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
-        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
+        fig = px.bar(avg_team, y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored(Teleop)", color_discrete_sequence = custom_colors)
         return fig
     @render_widget
     def classifier_overflow_depot_points():
         # add colors, figure out the line separation thing, team thing
-        new_df = get_teams_in_match()
-
-        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        fig = px.bar(avg_team, y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
         return fig
 
@@ -127,12 +126,11 @@ def general_match_server(input,output,session):
         new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
-        endgame_df["Hh Points"] = endgame_df["Hh"] * 20
-        endgame_df["P Points"] = endgame_df["P"] * 5
-        endgame_df["Sc Points"] = endgame_df["Sc"] * 10
+        endgame_df["N Points"] = endgame_df["N"] * 5
+        endgame_df["P Points"] = endgame_df["P"] * 10
 
         custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
-        fig_endgame_position_distrib = px.bar(endgame_df, x="Team Number", y=["Hh", "P", "Sc"],
+        fig_endgame_position_distrib = px.bar(endgame_df, x="Team Number", y=["N", "P"],
                                               title="Endgame Position Distribution by Teams",
                                               color_discrete_sequence=custom_colors)
         fig_endgame_position_distrib.update_layout(
@@ -146,13 +144,12 @@ def general_match_server(input,output,session):
         new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
-        endgame_df["Hh Points"] = endgame_df["Hh"] * 20
-        endgame_df["P Points"] = endgame_df["P"] * 5
-        endgame_df["Sc Points"] = endgame_df["Sc"] * 10
+        endgame_df["N Points"] = endgame_df["N"] * 5
+        endgame_df["P Points"] = endgame_df["P"] * 10
 
         custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
 
-        fig_endgame_point_distrib = px.bar(endgame_df, x="Team Number", y=["Hh Points", "P Points", "Sc Points"],
+        fig_endgame_point_distrib = px.bar(endgame_df, x="Team Number", y=["N Points", "P Points"],
                                            title="Endgame Point Distribution by Teams",
                                            color_discrete_sequence=custom_colors)
         fig_endgame_point_distrib.update_layout(
