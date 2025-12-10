@@ -22,7 +22,8 @@ def overview_tab_server(input, output, server):
         x = avg_team["Auto Points Scored"]
         y = avg_team["Teleop Points Scored"]
 
-        fig = px.scatter(x=x, y=y, labels={'x': "Avg Points Auto", 'y': "Avg Points Teleop"},
+        fig = px.scatter(x=x, y=y, text=avg_team.index, labels={'x': "Avg Points Auto", 'y': "Avg Points Teleop"},
                          title="teleop v. auto by point")
+        fig.update_traces(textposition="middle left")
 
         return fig

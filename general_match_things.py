@@ -4,35 +4,83 @@ import plotly.express as px
 from shiny import reactive, render, module
 from shiny import App, ui
 from shinywidgets import output_widget, render_widget
-from data_container import df
+from data_container import df, match_schedule
 
 @module.ui
 def general_match_ui():
     return ui.page_fluid(
-        output_widget("team_v_total_points"),
-        output_widget("avg_auto_pattern_count"),
-        output_widget("avg_teleop_pattern_count"),
-        output_widget("avg_combined_pattern_count"),
-        output_widget("endgame_position_distribution"),
-        output_widget("endgame_points_distribution"),
-        output_widget("classifier_overflow_number"),
-        output_widget("shooting_depot_teleop"),
-        output_widget("classifier_overflow_points"),
+        ui.layout_sidebar(
+            ui.sidebar(
+                ui.output_ui("match_list_combobox"),
+
+            ),
+            ui.navset_tab(
+                ui.nav_panel("General Data",
+                    ui.card(output_widget("team_v_total_points")),
+                    ui.card(output_widget("avg_combined_pattern_count")),
+                    ui.card(output_widget("teleop_v_auto_scored")),
+                ),
+                ui.nav_panel("Auto Data",
+                    ui.card(output_widget("avg_auto_pattern_count")),
+                    ui.card(output_widget("classifier_overflow_number_auto")),
+                    ui.card(output_widget("classifier_overflow_points_auto")),
+                ),
+                ui.nav_panel("Teleop Data",
+                    ui.card(output_widget("avg_teleop_pattern_count")),
+                    ui.card(output_widget("shooting_depot_teleop")),
+                    ui.card(output_widget("classifier_overflow_depot_scored")),
+                    ui.card(output_widget("classifier_overflow_depot_points")),
+                ),
+                ui.nav_panel("Endgame Data",
+                    ui.card(output_widget("endgame_position_distribution")),
+                    ui.card(output_widget("endgame_points_distribution"))
+                ),
+            )
     )
+        # output_widget("team_v_total_points"),
+        # output_widget("avg_auto_pattern_count"),
+        # output_widget("avg_teleop_pattern_count"),
+        # output_widget("avg_combined_pattern_count"),
+        # output_widget("endgame_position_distribution"),
+        # output_widget("endgame_points_distribution"),
+        # output_widget("classifier_overflow_number_auto"),
+        # output_widget("shooting_depot_teleop"),
+        # output_widget("classifier_overflow_points_auto"),
+    )
+
+
 @module.server
 def general_match_server(input,output,session):
 
     def get_teams_in_match():
-        all_teams = [3333, 6666, 11111, 4444]
+        match_name = str(input.match_select())
+        print(match_name)
+        all_teams = match_schedule[match_name]
         new_df = df.loc[df["Team Number"].isin(all_teams)]
         return new_df
 
     @render_widget
     def team_v_total_points():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+        new_df = get_teams_in_match()
         fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
         return fig
+
+    @render_widget
+    def teleop_v_auto_scored():
+        avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        fig = px.scatter(avg_team, x="Auto Number Scored", y="Teleop Number Scored", title="Auto v. Teleop Number Scored")
+        return fig
+
+    @render.ui
+    def match_list_combobox():
+        match_numbers = list(match_schedule.keys())
+        return (
+            ui.input_select(
+                "match_select",
+                "Match Number:",
+                choices = match_numbers
+            )
+        )
 
     @render_widget
     def avg_auto_pattern_count():
@@ -57,26 +105,26 @@ def general_match_server(input,output,session):
 
 
     @render_widget
-    def classified_v_overflow_v_depot_scored():
+    def classifier_overflow_depot_scored():
         # add colors, figure out the line separation thing, team thing
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
-        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"], title="Classifier v. Overflow v. Depot Scored(Teleop)")
+        new_df = get_teams_in_match()
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
+        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
+                     title="Classifier v. Overflow v. Depot Scored(Teleop)", color_discrete_sequence = custom_colors)
         return fig
     @render_widget
-    def classified_v_overflow_v_depot_points():
+    def classifier_overflow_depot_points():
         # add colors, figure out the line separation thing, team thing
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
-        fig = px.bar(new_df, x="Team Number",
-                     y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
+        new_df = get_teams_in_match()
+
+        fig = px.bar(new_df, x="Team Number", y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
         return fig
 
     @render_widget
     def endgame_position_distribution():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+
+        new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
         endgame_df["Hh Points"] = endgame_df["Hh"] * 20
@@ -84,7 +132,6 @@ def general_match_server(input,output,session):
         endgame_df["Sc Points"] = endgame_df["Sc"] * 10
 
         custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
-
         fig_endgame_position_distrib = px.bar(endgame_df, x="Team Number", y=["Hh", "P", "Sc"],
                                               title="Endgame Position Distribution by Teams",
                                               color_discrete_sequence=custom_colors)
@@ -95,8 +142,8 @@ def general_match_server(input,output,session):
 
     @render_widget
     def endgame_points_distribution():
-        all_teams = [3333, 6666, 11111, 4444]
-        new_df = df.loc[df["Team Number"].isin(all_teams)]
+
+        new_df = get_teams_in_match()
         endgame_df = new_df.groupby("Team Number")["End Position(Endgame)"].value_counts().unstack(
             fill_value=0).reset_index()
         endgame_df["Hh Points"] = endgame_df["Hh"] * 20
@@ -116,7 +163,7 @@ def general_match_server(input,output,session):
 
 
     @render_widget
-    def classifier_overflow_number():
+    def classifier_overflow_number_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
         fig = px.bar(avg_team, y=["Classifier Scored(Auto)", "Overflow Scored(Auto)"],
@@ -124,7 +171,7 @@ def general_match_server(input,output,session):
         return fig
 
     @render_widget
-    def classifier_overflow_points():
+    def classifier_overflow_points_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
         fig = px.bar(avg_team, y=["Classifier Points Scored(Auto)", "Overflow Points Scored(Auto)"],
