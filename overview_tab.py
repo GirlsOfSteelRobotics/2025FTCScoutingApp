@@ -22,8 +22,10 @@ def overview_tab_server(input, output, server):
         x = avg_team["Auto Points Scored"]
         y = avg_team["Teleop Points Scored"]
 
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
         fig = px.scatter(x=x, y=y, text=avg_team.index, labels={'x': "Avg Points Auto", 'y': "Avg Points Teleop"},
-                         title="teleop v. auto by point")
+                         title="teleop v. auto by point", color_discrete_sequence=custom_colors)
         fig.update_traces(textposition="middle left")
+
 
         return fig
