@@ -43,3 +43,4 @@ with open("data/2526-FIM-TEQ/toa_teams.json", 'r') as f:
     teams_all = []
     for team_json in team_key_json:
         teams_all.append(team_json["team_key"])
+

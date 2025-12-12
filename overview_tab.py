@@ -23,22 +23,7 @@ def overview_tab_server(input, output, server):
         y = avg_team["Teleop Points Scored"]
 
         fig = px.scatter(x=x, y=y, text=avg_team.index, labels={'x': "Avg Points Auto", 'y': "Avg Points Teleop"},
-                         title="teleop v. auto by point", hover_name = "team_key", hover_data = {
-            "team_key": "",
-            "totalPieces": ":.2f",
-
-            "totalAutoPoints": ":.2f",
-            "totalAutoCoral": ":.2f",
-            "algaeAuto": ":.2f",
-
-            "totalTeleopPoints": ":.2f",
-            "totalTeleopCoral": ":.2f",
-            "algaeTeleop": ":.2f",
-
-            "endgamePoints": ":.2f",
-            "endgamePlusAuto": ":.2f",
-            }
-        )
+                         title="teleop v. auto by point")
         fig.update_traces(textposition="middle left")
 
         return fig
