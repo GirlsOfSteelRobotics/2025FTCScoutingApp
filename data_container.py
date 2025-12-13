@@ -9,9 +9,6 @@ EVENT_CODE = "2526-PA-GIS1"
 def load_data():
     df=pd.read_csv(f'data/{EVENT_CODE}/scouted_data.tsv', sep='\t')
 
-
-
-    position = df["End Position(Endgame)"]
     df["Auto Points Scored"] = df["Classifier Scored(Auto)"]*3 + df["Overflow Scored(Auto)"]*1 + df["Pattern Correct(Auto)"]*2
     df["Teleop Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Depot Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
     df["Endgame Points Scored"] = np.where(df["End Position(Endgame)"] == "N", 5,
