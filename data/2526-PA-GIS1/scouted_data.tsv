@@ -1,25 +1,23 @@
-Scouter Initials	Match Number	Robot	Team Number	No Show	Moved?	Classifier Scored(Auto)	Overflow Scored(Auto)	Pattern Correct(Auto)	Classifier Scored(Teleop)	Overflow Scored(Teleop)	Depot Scored(Teleop)	Pattern Correct(Teleop)	End Position(Endgame)
-JZ    1    R1    12792    R1    false    true    0    6    0    0    0    2    0    0    0    0    true    false    No    false    false    2    0    No Card
-LS    1    B2    9981    R1    false    true    4.494    3    6    2    0        0    0    0    0    true    true    No    false    false    2    2    No Card
-AS    1    B1    20079    R2    false    false    0    5    1    0    0    3    0    0    0    0    false    false    No    false    false    2    1    No Card
-JZ    2    R1    16011    R1    false    true    0    4    0    2    0    4    0    0    0    0    true    false    Sc    false    false    3    0    No Card
-HF    2    R2    9820    R1    false    false    0    2    0    0    0    2    0    0    0    0    false    false    P    false    false    1    1    No Card
-AS    2    B1    98201    R1    false    true    0    0    0    0    0    2    0    0    0    0    false    false    No    false    false    0    0    No Card
-LS    2    B2    11792    R2    false    false    0    1    0    0    0    2    0    0    0    0    true    true    Sc    false    false    1    1    No Card
-JZ    3    R1    24020    R1    false    false    0    0    0    0    0        0    0    0    0    true    false    No    false    false    0    1    No Card
-HF    3    R2    24020    R1    false    true    0    0    0    0    0        0    0    0    0    false    false    No    false    false    0    0    No Card
-LS    3    B2    9821    R1    false    false    0    2    0    0    0    2    0    0    0    0    false    false    No    false    false    0    1    No Card
-JZ    4    R1    20223    R1    false    false    0    3    0    0    0        0    0    0    0    false    false    Sc    false    false    2    0    No Card
-JZ    4    R2    8509    R1    false    false    0    3    0    0    0        0    0    0    0    false    false    Sc    false    false    2    0    No Card
-DT	4	B1	27368	R1	false	true	0	0	0	0	0		0	0	0	0	false	false	No	false	false	0	0	No Card
+Scouter Initials	Match Number	Robot	Team Number	Starting Position	No Show	Moved?	Timer	Classifier Scored(Auto)	Overflow Scored(Auto)	Pattern Correct(Auto)	Auto Foul	Pickup Location(Teleop)	Classifier Scored(Teleop)	Overflow Scored(Teleop)	Depot Scored(Teleop)	Pattern Correct(Teleop)	Crossed Field/Played Defense?(Teleop)	Was Robot Defended by Other Alliance?(Teleop)	End Position(Endgame)	Died?(Postmatch)	Tipped/Fell Over?(Postmatch)	Offense Skill(Postmatch)	Defensive Skill(Postmatch)	Yellow/Red Card(Postmatch)	Comments(Postmatch)
+JZ	1	R1	12792	R1	false	true	0	6	0	0	0	2	0	0	0	0	true	false	No	false	false	2	0	No Card
+LS	1	B2	9981	R1	false	true	4.494	0	3	6	2	0	0	0	0	0	true	true	No	false	false	2	2	No Card
+AS	1	B1	20079	R2	false	false	0	5	1	0	0	3	0	0	0	0	false	false	No	false	false	2	1	No Card
+JZ	2	R1	16011	R1	false	true	0	4	0	2	0	4	0	0	0	0	true	false	Sc	false	false	3	0	No Card
+HF	2	R2	9820	R1	false	false	0	2	0	0	0	2	0	0	0	0	false	false	P	false	false	1	1	No Card
+AS	2	B1	98201	R1	false	true	0	0	0	0	0	2	0	0	0	0	false	false	No	false	false	0	0	No Card
+LS	2	B2	11792	R2	false	false	0	1	0	0	0	2	0	0	0	0	true	true	Sc	false	false	1	1	No Card
+JZ	3	R1	24020	R1	false	false	0	0	0	0	0	0	0	0	0	0	true	false	No	false	false	0	1	No Card
+HF	3	R2	24020	R1	false	true	0	0	0	0	0	0	0	0	0	0	false	false	No	false	false	0	0	No Card
+LS	3	B2	9821	R1	false	false	0	2	0	0	0	2	0	0	0	0	false	false	No	false	false	0	1	No Card
+JZ	4	R1	20223	R1	false	false	0	3	0	0	0	0	0	0	0	0	false	false	Sc	false	false	2	0	No Card
+JZ	4	R2	8509	R1	false	false	0	3	0	0	0	0	0	0	0	0	false	false	Sc	false	false	2	0	No Card
+DT	4	B1	27368	R1	false	true	0	0	0	0	0	0	0	0	0	0	false	false	No	false	false	0	0	No Card
 DT	4	B2	32496	R2	false	true	0	0	0	0	0		0	0	0	0	false	false	Sc	false	false	0	0	No Card
-JZ    5    R1    18429    R1    false    true    0    1    0    1    0    3    0    0    0    0    true    false    Sc    false    false    2    0    No Card
-
+JZ	5	R1	18429	R1	false	true	0	1	0	1	0	3	0	0	0	0	true	false	Sc	false	false	2	0	No Card
 DT	5	B1	16776	R1	false	true	0	5	0	1	0	3	0	0	0	0	false	false	Sc	false	false	3	0	No Card
-JZ    6    R1    18603    R2    false    true    0    1    0    0    0    3    0    0    0    0    true    true    Sc    false    false    4    1    No Card
+JZ	6	R1	18603	R2	false	true	0	1	0	0	0	3	0	0	0	0	true	true	Sc	false	false	4	1	No Card
 DT	6	B2	9982	R2	false	false	0	5	0	0	0	3	0	0	0	0	true	true	P	false	false	3	2	No Card
-
-JZ    7    R1    18035    R1    false    false    0    5    1    2    0    2    0    0    0    0    false    false    No    false    false    2    0    No Card
+JZ	7	R1	18035	R1	false	false	0	5	1	2	0	2	0	0	0	0	false	false	No	false	false	2	0	No Card
 DT	7	B2	9820	R1	false	true	0	2	0	0	0	2	0	0	0	0	false	false	Sc	false	false	0	0	No Card
 JZ    8    R1    25654    R1    false    false    0    0    0    0    0        0    0    0    0    true    false    P    false    false    0    3    No Card
 DT	8	B1	32563	R1	false	true	0	4	0	0	0	3	0	0	0	0	false	false	No	false	false	0	0	No Card
