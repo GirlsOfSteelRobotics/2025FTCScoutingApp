@@ -68,27 +68,7 @@ def general_match_server(input,output,session):
     @render_widget
     def teleop_v_auto_scored():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
-        fig = px.scatter(avg_team, x="Auto Number Scored",
-            y="Teleop Number Scored",
-            title="Auto v. Teleop Number Scored",
-            hover_name = "team_key",
-            hover_data = {
-            "team_key": "",
-            "totalPieces": ":.2f",
-
-            "totalAutoPoints": ":.2f",
-            "totalAutoCoral": ":.2f",
-            "algaeAuto": ":.2f",
-
-            "totalTeleopPoints": ":.2f",
-            "totalTeleopCoral": ":.2f",
-            "algaeTeleop": ":.2f",
-
-            "endgamePoints": ":.2f",
-            "endgamePlusAuto": ":.2f"
-        }
-              )
-
+        fig = px.scatter(avg_team, x="Auto Number Scored", y="Teleop Number Scored", title="Auto v. Teleop Number Scored")
         return fig
 
     @render.ui
