@@ -16,8 +16,8 @@ def load_data():
     df["Teleop Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Depot Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
     df["Endgame Points Scored"] = np.where(df["End Position(Endgame)"] == "N", 5,
                                             np.where(df["End Position(Endgame)"] == "P", 10, 0))
-    # df["Total Points Scored"] = df["Auto Points Scored"] + df["Teleop Points Scored"] + df["Endgame Points Scored"]
-    # df["Shooting Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
+    df["Total Points Scored"] = df["Auto Points Scored"] + df["Teleop Points Scored"] + df["Endgame Points Scored"]
+    df["Shooting Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
     df["Classifier Points Scored(Auto)"] = df["Classifier Scored(Auto)"]*3
     df["Overflow Points Scored(Auto)"] = df["Overflow Scored(Auto)"]*1
     df["Classifier Scored POINTS(Teleop)"] = df["Classifier Scored(Teleop)"] * 3
