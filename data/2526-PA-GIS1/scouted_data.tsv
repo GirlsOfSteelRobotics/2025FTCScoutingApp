@@ -1,1 +1,8 @@
 Scouter Initials	Match Number	Robot	Team Number	No Show	Moved?	Classifier Scored(Auto)	Overflow Scored(Auto)	Pattern Correct(Auto)	Classifier Scored(Teleop)	Overflow Scored(Teleop)	Depot Scored(Teleop)	Pattern Correct(Teleop)	End Position(Endgame)
+JZ    1    R1    12792    R1    false    true    0    6    0    0    0    2    0    0    0    0    true    false    No    false    false    2    0    No Card
+LS    1    B2    9981    R1    false    true    4.494    3    6    2    0        0    0    0    0    true    true    No    false    false    2    2    No Card
+AS    1    B1    20079    R2    false    false    0    5    1    0    0    3    0    0    0    0    false    false    No    false    false    2    1    No Card
+JZ    2    R1    16011    R1    false    true    0    4    0    2    0    4    0    0    0    0    true    false    Sc    false    false    3    0    No Card
+HF    2    R1    9820    R1    false    false    0    2    0    0    0    2    0    0    0    0    false    false    P    false    false    1    1    No Card
+AS    2    B1    98201    R1    false    true    0    0    0    0    0    2    0    0    0    0    false    false    No    false    false    0    0    No Card
+LS    2    B2    11792    R2    false    false    0    1    0    0    0    2    0    0    0    0    true    true    Sc    false    false    1    1    No Card
