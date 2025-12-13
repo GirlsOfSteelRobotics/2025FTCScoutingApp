@@ -386,30 +386,6 @@
     {
         "event_participant_key": "2526-PA-GIS1-T16",
         "event_key": "2526-PA-GIS1",
-        "team_key": "19934",
-        "team_number": 19934,
-        "is_active": true,
-        "card_status": null,
-        "team": {
-            "team_key": "19934",
-            "region_key": "PA",
-            "league_key": "",
-            "team_number": 19934,
-            "team_name_short": "Mega Amps",
-            "team_name_long": "Boeing/Google&Mckeesport Area High School",
-            "robot_name": "",
-            "last_active": "2526",
-            "city": "McKeesport",
-            "state_prov": "PA",
-            "zip_code": 0,
-            "country": "USA",
-            "rookie_year": 2021,
-            "website": "http://www.team1708.com/ftc"
-        }
-    },
-    {
-        "event_participant_key": "2526-PA-GIS1-T17",
-        "event_key": "2526-PA-GIS1",
         "team_key": "20079",
         "team_number": 20079,
         "is_active": true,
@@ -432,7 +408,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T18",
+        "event_participant_key": "2526-PA-GIS1-T17",
         "event_key": "2526-PA-GIS1",
         "team_key": "20223",
         "team_number": 20223,
@@ -456,7 +432,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T19",
+        "event_participant_key": "2526-PA-GIS1-T18",
         "event_key": "2526-PA-GIS1",
         "team_key": "24020",
         "team_number": 24020,
@@ -480,7 +456,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T20",
+        "event_participant_key": "2526-PA-GIS1-T19",
         "event_key": "2526-PA-GIS1",
         "team_key": "25654",
         "team_number": 25654,
@@ -504,7 +480,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T21",
+        "event_participant_key": "2526-PA-GIS1-T20",
         "event_key": "2526-PA-GIS1",
         "team_key": "27368",
         "team_number": 27368,
@@ -528,7 +504,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T22",
+        "event_participant_key": "2526-PA-GIS1-T21",
         "event_key": "2526-PA-GIS1",
         "team_key": "32496",
         "team_number": 32496,
@@ -552,7 +528,7 @@
         }
     },
     {
-        "event_participant_key": "2526-PA-GIS1-T23",
+        "event_participant_key": "2526-PA-GIS1-T22",
         "event_key": "2526-PA-GIS1",
         "team_key": "32563",
         "team_number": 32563,
