@@ -21,3 +21,5 @@ DT	6	B2	9982	R2	false	false	0	5	0	0	0	3	0	0	0	0	true	true	P	false	false	3	2	No C
 
 JZ    7    R1    18035    R1    false    false    0    5    1    2    0    2    0    0    0    0    false    false    No    false    false    2    0    No Card
 DT	7	B2	9820	R1	false	true	0	2	0	0	0	2	0	0	0	0	false	false	Sc	false	false	0	0	No Card
+JZ    8    R1    25654    R1    false    false    0    0    0    0    0        0    0    0    0    true    false    P    false    false    0    3    No Card
+DT	8	B1	32563	R1	false	true	0	4	0	0	0	3	0	0	0	0	false	false	No	false	false	0	0	No Card
