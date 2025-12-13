@@ -33,3 +33,4 @@ PJ    11    B1    6549    R2    false    false    0    1    0    1    0    2    
 JZ    12    R1    9821    R1    false    true    0    0    0    0    0    2    0    0    0    0    false    false    P    false    false    1    0    No Card
 DT	12	R2	9820	R2	false	true	0	3	0	0	0	2	0	0	0	0	false	false	P	false	false	0	0	No Card
 PJ    12    B1    13873    R1    false    false    0    0    0    0    0        0    0    0    0    false    false    P    false    false    0    0    No Card    Derped around the whole match`
+as    12    B2    20223    R2    false    true    0    0    0    0    0        6    0    0    4    false    false    Sc    false    false    0    0    No Card
