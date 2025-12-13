@@ -40,3 +40,7 @@ JZ    14    R1    3256    R1    false    true    0    0    0    0    0    3    9
 DT	14	R2	13873	R2	false	false	0	0	0	0	0	2	0	0	0	0	false	false	P	false	false	0	0	No Card	their ball was stuck for like 45 secs, stuck again for anoher like 20, their intake part broke
 PJ    14    B1    2736    R2    false    false    0    0    0    0    0        0    0    0    0    false    false    Sc    false    false    0    0    No Card    Tried all match to pickup artifacts
 as    14    B2    9981    R1    false    false    0    2    0    1    0    3    2    0    0    2    false    false    No    false    false    0    0    No Card
+JZ    15    R1    24020    R2    false    false    0    0    0    0    0    2    0    0    0    0    false    false    P    false    false    0    0    No Card
+DT	15	R2	16776	R1	false	true	0	5	0	0	0	4	0	0	0	0	false	false	P	false	false	2	0	No Card	shooting mechanism weak sometimes, just barely making it, part of robot fell out contact w robot
+PJ    15    R1    20079    R2    false    false    0    0    0    0    0        6    0    0    0    false    false    Sc    false    false    0    0    No Card    Bounce out troubles, like 60% accuracy
+as    15    B2    16011    R1    false    false    0    2    0    0    0    4    7    0    0    3    false    false    P    false    false    3    0    No Card    very pretty revolver style
