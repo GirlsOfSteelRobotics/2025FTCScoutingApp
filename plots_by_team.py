@@ -29,34 +29,30 @@ def plots_by_team_server(input, output, server):
     def total_points_v_match():
         xxx = df["Team Number"] == input.team_numbers()
         quals1_data = df[xxx]
-        custom_colors = ["#194f55", "#54808e", "#243454"]
-        fig = px.scatter(quals1_data, x="Match Number", y="Total Points Scored", title="Total Points Scored per Match", color_discrete_sequence=custom_colors)
+        fig = px.scatter(quals1_data, x="Match Number", y="Total Points Scored", title="Total Points Scored per Match")
         return fig
 
     @render_widget
     def teleop_number_v_match():
         xxx = df["Team Number"] == input.team_numbers()
         quals1_data = df[xxx]
-        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
         fig = px.bar(quals1_data, x="Match Number",
                      y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
-                     title="Classifier v. Overflow v. Depot Scored(Teleop)", color_discrete_sequence=custom_colors)
+                     title="Classifier v. Overflow v. Depot Scored(Teleop)")
         return fig
 
     @render_widget
     def auto_number_v_match():
         xxx = df["Team Number"] == input.team_numbers()
         quals1_data = df[xxx]
-        custom_colors = ["#194f55", "#54808e", "#243454"]
-        fig = px.bar(quals1_data, x= "Match Number", y=["Classifier Scored(Auto)", "Overflow Scored(Teleop)"], title="Classifier v. Overflow Scored(Auto)", color_discrete_sequence=custom_colors)
+        fig = px.bar(quals1_data, x= "Match Number", y=["Classifier Scored(Auto)", "Overflow Scored(Teleop)"], title="Classifier v. Overflow Scored(Auto)")
         return fig
 
     @render_widget
     def auto_teleop_v_match():
         xxx = df["Team Number"] == input.team_numbers()
         quals1_data = df[xxx]
-        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
-        fig = px.bar(quals1_data, x= "Match Number", y=["Teleop Points Scored", "Auto Points Scored"], title="Teleop and Auto Points Scored v. Match", color_discrete_sequence=custom_colors)
+        fig = px.bar(quals1_data, x= "Match Number", y=["Teleop Points Scored", "Auto Points Scored"], title="Teleop and Auto Points Scored v. Match")
         return fig
 
     @render.ui
