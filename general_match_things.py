@@ -6,6 +6,7 @@ from shiny import App, ui
 from shinywidgets import output_widget, render_widget
 from data_container import df, match_schedule
 
+
 @module.ui
 def general_match_ui():
     return ui.page_fluid(
@@ -62,13 +63,16 @@ def general_match_server(input,output,session):
     @render_widget
     def team_v_total_points():
         new_df = get_teams_in_match()
-        fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team")
+        custom_colors = ["#194f55", "#54808e", "#243454"]
+        fig = px.box(new_df, x="Team Number", y="Total Points Scored", title="Total Points Scored per Team", color_discrete_sequence=custom_colors)
         return fig
 
     @render_widget
     def teleop_v_auto_scored():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
-        fig = px.scatter(avg_team, x="Auto Number Scored", y="Teleop Number Scored", title="Auto v. Teleop Number Scored")
+        custom_colors = ["#194f55", "#54808e", "#243454"]
+        fig = px.scatter(avg_team, x="Auto Number Scored", y="Teleop Number Scored", text=avg_team.index, title="Auto v. Teleop Number Scored", color_discrete_sequence=custom_colors)
+        fig.update_traces(textposition="middle left")
         return fig
 
     @render.ui
@@ -85,22 +89,25 @@ def general_match_server(input,output,session):
     @render_widget
     def avg_auto_pattern_count():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
         fig_auto_pattern_count = px.bar(avg_team, y="Pattern Correct(Auto)",
-                                        title="Average Pattern Correct by Team in Autonomous")
+                                        title="Average Pattern Correct by Team in Autonomous", color_discrete_sequence=custom_colors)
         return fig_auto_pattern_count
 
     @render_widget
     def avg_teleop_pattern_count():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        custom_colors = ["#194f55", "#54808e", "#243454"]
         fig_teleop_pattern_count = px.bar(avg_team, y = "Pattern Correct(Teleop)",
-                                          title = "Average Pattern Correct by Team in Teleop")
+                                          title = "Average Pattern Correct by Team in Teleop", color_discrete_sequence=custom_colors)
         return fig_teleop_pattern_count
 
     @render_widget
     def avg_combined_pattern_count():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        custom_colors = ["#194f55", "#54808e", "#243454"]
         fig_general_pattern_count = px.bar(avg_team, y=["Pattern Correct(Auto)", "Pattern Correct(Teleop)"],
-                                           title="Average Pattern Correct by Team in Teleop and Auto")
+                                           title="Average Pattern Correct by Team in Teleop and Auto", color_discrete_sequence=custom_colors)
         return fig_general_pattern_count
 
 
@@ -108,7 +115,7 @@ def general_match_server(input,output,session):
     def classifier_overflow_depot_scored():
         # add colors, figure out the line separation thing, team thing
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
-        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
+        custom_colors = ["#194f55", "#54808e", "#243454"]
         fig = px.bar(avg_team, y=["Classifier Scored(Teleop)", "Overflow Scored(Teleop)", "Depot Scored(Teleop)"],
                      title="Classifier v. Overflow v. Depot Scored(Teleop)", color_discrete_sequence = custom_colors)
         return fig
@@ -116,8 +123,9 @@ def general_match_server(input,output,session):
     def classifier_overflow_depot_points():
         # add colors, figure out the line separation thing, team thing
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
+        custom_colors = ["#194f55", "#54808e", "#243454"]
         fig = px.bar(avg_team, y=["Classifier Scored POINTS(Teleop)", "Overflow Scored POINTS(Teleop)", "Depot Scored(Teleop)"],
-                     title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)")
+                     title="Classifier v. Overflow v. Depot Scored POINTS(Teleop)", color_discrete_sequence=custom_colors)
         return fig
 
     @render_widget
@@ -163,16 +171,18 @@ def general_match_server(input,output,session):
     def classifier_overflow_number_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
         fig = px.bar(avg_team, y=["Classifier Scored(Auto)", "Overflow Scored(Auto)"],
-                     title="Classifier v. Overflow Scored (Auto)")
+                     title="Classifier v. Overflow Scored (Auto)", color_discrete_sequence = custom_colors)
         return fig
 
     @render_widget
     def classifier_overflow_points_auto():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
+        custom_colors = ["#D4A49C", "#8F6779", "#5C3028"]
         fig = px.bar(avg_team, y=["Classifier Points Scored(Auto)", "Overflow Points Scored(Auto)"],
-                     title="Classifier v. Overflow Points Scored (Auto)")
+                     title="Classifier v. Overflow Points Scored (Auto)",color_discrete_sequence=custom_colors)
         return fig
 
 
@@ -180,8 +190,9 @@ def general_match_server(input,output,session):
     def shooting_depot_teleop():
         avg_team = get_teams_in_match().groupby("Team Number").mean(numeric_only=True)
         print(avg_team.keys())
+        custom_colors = ["#194f55", "#54808e", "#243454"]
         fig = px.scatter(avg_team, x="Depot Scored(Teleop)", y="Shooting Points Scored", text=avg_team.index,
-                         title="Depot v. Shooting Scored (Teleop) per Team")
+                         title="Depot v. Shooting Scored (Teleop) per Team", color_discrete_sequence=custom_colors)
         fig.update_traces(marker=dict(
             symbol='circle', size=10),
             textposition="middle left")
