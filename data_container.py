@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import json
-df=pd.read_csv('data/2526-FIM-TEQ/scouted_data.tsv', sep='\t')
+df=pd.read_csv('data/2526-PA-GIS1/scouted_data.tsv', sep='\t')
 
 
 
@@ -27,7 +27,7 @@ df["Teleop Number Scored"] = df["Classifier Scored(Teleop)"] + df["Overflow Scor
 # Match Name -> [teams in match]
 match_schedule = {}
 
-with open("data/2526-FIM-TEQ/toa_matches.json", 'r') as f:
+with open("data/2526-PA-GIS1/toa_matches.json", 'r') as f:
     match_schedule_json = json.load(f)
     for match_json in match_schedule_json:
         teams_in_match = []
@@ -38,7 +38,7 @@ with open("data/2526-FIM-TEQ/toa_matches.json", 'r') as f:
         match_schedule[match_number] = teams_in_match
 
 
-with open("data/2526-FIM-TEQ/toa_teams.json", 'r') as f:
+with open("data/2526-PA-GIS1/toa_teams.json", 'r') as f:
     team_key_json = json.load(f)
     teams_all = []
     for team_json in team_key_json:
