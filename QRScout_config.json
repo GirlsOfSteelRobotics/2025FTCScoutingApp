@@ -103,7 +103,7 @@
                "formResetBehavior":"reset",
                "defaultValue":0,
                "min":0,
-               "max":199999
+               "max":19999
             },
             {
                "title":"Starting Position",
