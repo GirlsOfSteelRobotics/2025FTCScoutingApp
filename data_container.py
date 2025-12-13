@@ -7,7 +7,8 @@ EVENT_CODE = "2526-PA-GIS1"
 
 
 def load_data():
-    df=pd.read_csv(f'data/{EVENT_CODE}/scouted_data.tsv', sep='\t')
+    script_directory = pathlib.Path(__file__).resolve().parent
+    df = pd.read_csv(script_directory / f'data/{EVENT_CODE}/scouted_data.tsv', sep='\t')
 
     df["Auto Points Scored"] = df["Classifier Scored(Auto)"]*3 + df["Overflow Scored(Auto)"]*1 + df["Pattern Correct(Auto)"]*2
     df["Teleop Points Scored"] = df["Classifier Scored(Teleop)"]*3 + df["Overflow Scored(Teleop)"]*1 + df["Depot Scored(Teleop)"]*1 + df["Pattern Correct(Teleop)"]*2
@@ -27,7 +28,7 @@ def load_data():
     # Match Name -> [teams in match]
     match_schedule = {}
 
-    with open(f"data/{EVENT_CODE}/toa_matches.json", 'r') as f:
+    with open(script_directory / f"data/{EVENT_CODE}/toa_matches.json", 'r') as f:
         match_schedule_json = json.load(f)
         for match_json in match_schedule_json:
             teams_in_match = []
@@ -38,7 +39,7 @@ def load_data():
             match_schedule[match_number] = teams_in_match
 
 
-    with open(f"data/{EVENT_CODE}/toa_teams.json", 'r') as f:
+    with open(script_directory / f"data/{EVENT_CODE}/toa_teams.json", 'r') as f:
         team_key_json = json.load(f)
         teams_all = []
         for team_json in team_key_json:
